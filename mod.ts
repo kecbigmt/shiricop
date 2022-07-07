@@ -17,7 +17,7 @@ serve({
         return json({ challenge: body.challenge });
       case 'event_callback': {
         // ボットからのメッセージなら無視する
-        if (body.event.bot_id) return;
+        if (body.event.bot_id) return new Response();
 
         switch (body.event.type) {
           case 'message': {
@@ -47,17 +47,17 @@ serve({
               );
             }
 
-            return;
+            return new Response();
           }
           default: {
             // TODO: 制御する
-            return;
+            return new Response();
           }
         }
       }
       default: {
         // TODO: 制御する
-        return;
+        return new Response();
       }
     }
   },
